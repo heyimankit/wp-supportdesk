@@ -1,8 +1,10 @@
 # WP SupportDesk — WordPress Support Ticket Management System & Portal
 
 - **GitHub Repository:** [https://github.com/heyimankit/wp-supportdesk](https://github.com/heyimankit/wp-supportdesk)
-- **Live Support Portal (Public Demo):** [https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/](https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/)
-- **Live Admin Login:** [https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/wp-login.php](https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/wp-login.php)
+- **Temporary Live Demo (Cloudflare Quick Tunnel):** [https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/](https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/) *(Active during live demonstration sessions from the local development server)*
+- **Live Admin Login (Demo):** [https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/wp-login.php](https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/wp-login.php)
+- **Local Development URL:** `http://localhost/supportdesk/`
+- **Local WordPress Admin:** `http://localhost/supportdesk/wp-admin/`
 
 ![WP SupportDesk Homepage](docs/screenshots/01_homepage.png)
 
@@ -22,13 +24,14 @@ WP SupportDesk provides:
 
 ---
 
-## 2. Technology Stack
+## 2. Technology Stack & Tested Environment
 
-- **Platform / CMS:** WordPress (6.x+)
-- **Backend Language:** PHP (7.4+ / tested on PHP 8.2.12)
-- **Database:** MySQL / MariaDB (using native WordPress tables `wp_posts` and `wp_postmeta`)
-- **Frontend Presentation:** Semantic HTML5, CSS3 (CSS custom properties, CSS Grid, Flexbox), minimal vanilla JavaScript (double-click prevention, alert focus management, keyboard navigation)
-- **Web Server:** Apache 2.4 (XAMPP)
+- **Tested Platform / CMS:** WordPress 7.1.5 (Compatible with WordPress 6.0+)
+- **Tested Backend Runtime:** PHP 8.2.12 (CLI & Apache 2.4.58 module)
+- **Tested Database Server:** MariaDB 10.4.32 (Configured on local port `3307` via XAMPP)
+- **Local Web Server:** Apache 2.4.58 (Win64)
+- **Public Tunnel / Reverse Proxy:** Cloudflare Quick Tunnel (`cloudflared` v2026.11.2)
+- **Frontend Presentation:** Semantic HTML5, CSS3 (CSS custom properties, CSS Grid, Flexbox), minimal vanilla JavaScript (double-click lock, alert focus management, keyboard navigation)
 - **Version Control:** Git
 
 ---
@@ -182,7 +185,7 @@ wp-supportdesk/
 - **CSRF Nonces**: `wp_nonce_field()` and `wp_verify_nonce()` are validated on every frontend submission and administrative meta box update.
 - **Capability Checks**: Ticket editing and administrative triage are mapped to `manage_options`, preventing unauthorized subscribers or contributors from accessing or modifying tickets.
 - **Sanitization & Escaping**: All inputs are sanitized using `sanitize_text_field()`, `sanitize_email()`, `sanitize_key()`, and `sanitize_textarea_field()`. Output is escaped with `esc_html()`, `esc_attr()`, `esc_url()`, and `absint()`.
-- **Anti-Spam & Rate Limiting**: An invisible honeypot field catches automated bot scripts, while WordPress Transients API enforces a rate limit of 5 submissions per 5-minute rolling window per hashed IP address.
+- **Anti-Spam & Hardened Rate Limiting**: An invisible honeypot field catches automated bot scripts, while WordPress Transients API enforces a rate limit of 5 submissions per 5-minute rolling window. To prevent header spoofing attacks, client-controlled headers like `CF-Connecting-IP` or `X-Forwarded-For` are only evaluated if the immediate upstream connection originates from verified local loopback (`127.0.0.1` or `::1`). Every candidate is strictly validated with `filter_var(..., FILTER_VALIDATE_IP)`. When requests come directly without a trusted proxy, `$_SERVER['REMOTE_ADDR']` is strictly enforced.
 - **Direct File Access Block**: Every PHP file begins with `if ( ! defined( 'ABSPATH' ) ) { exit; }`.
 
 ---

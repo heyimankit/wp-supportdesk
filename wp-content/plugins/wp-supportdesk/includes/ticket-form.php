@@ -86,16 +86,52 @@ function wp_supportdesk_enqueue_frontend_assets() {
 add_action( 'wp_enqueue_scripts', 'wp_supportdesk_enqueue_frontend_assets' );
 
 /**
+ * Resolves the client IP address securely for submission rate limiting.
+ *
+ * To prevent IP spoofing attacks, client-controlled headers such as CF-Connecting-IP
+ * or X-Forwarded-For are only inspected if the immediate upstream connection originates
+ * from a verified local reverse proxy/tunnel on loopback (127.0.0.1 or ::1). Every candidate
+ * is strictly validated with filter_var FILTER_VALIDATE_IP before use.
+ *
+ * @return string
+ */
+function wp_supportdesk_get_client_ip() {
+	$remote_ip = isset( $_SERVER['REMOTE_ADDR'] ) ? trim( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+
+	// Inspect proxy headers only when the direct connection originates from local loopback (e.g. Cloudflare tunnel or local reverse proxy).
+	$trusted_proxies = array( '127.0.0.1', '::1' );
+	if ( in_array( $remote_ip, $trusted_proxies, true ) ) {
+		if ( ! empty( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
+			$cf_ip = trim( wp_unslash( $_SERVER['HTTP_CF_CONNECTING_IP'] ) );
+			if ( filter_var( $cf_ip, FILTER_VALIDATE_IP ) ) {
+				return $cf_ip;
+			}
+		}
+
+		if ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+			$forwarded = explode( ',', wp_unslash( $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
+			$client_candidate = trim( $forwarded[0] );
+			if ( filter_var( $client_candidate, FILTER_VALIDATE_IP ) ) {
+				return $client_candidate;
+			}
+		}
+	}
+
+	if ( filter_var( $remote_ip, FILTER_VALIDATE_IP ) ) {
+		return $remote_ip;
+	}
+
+	return '127.0.0.1';
+}
+
+/**
  * Builds a hashed transient key for per-IP submission throttling.
  *
  * @return string
  */
 function wp_supportdesk_get_throttle_key() {
-	$remote_addr = isset( $_SERVER['REMOTE_ADDR'] )
-		? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) )
-		: 'unknown';
-
-	return 'wp_supportdesk_rl_' . substr( wp_hash( $remote_addr . '|supportdesk' ), 0, 24 );
+	$client_ip = wp_supportdesk_get_client_ip();
+	return 'wp_supportdesk_rl_' . substr( wp_hash( $client_ip . '|supportdesk' ), 0, 24 );
 }
 
 /**
