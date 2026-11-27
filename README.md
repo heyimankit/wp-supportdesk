@@ -4,8 +4,6 @@
 - **Live Support Portal (Public Demo):** [https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/](https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/)
 - **Live Submit Ticket Page:** [https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/support/](https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/support/)
 - **Live Admin Login:** [https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/wp-login.php](https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/wp-login.php)
-- **Local Development URL:** [http://localhost/supportdesk/](http://localhost/supportdesk/)
-- **Local WordPress Admin:** [http://localhost/supportdesk/wp-admin/](http://localhost/supportdesk/wp-admin/)
 
 ![WP SupportDesk Homepage](docs/screenshots/01_homepage.png)
 
