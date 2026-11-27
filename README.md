@@ -1,8 +1,8 @@
 # WP SupportDesk — WordPress Support Ticket Management System & Portal
 
 - **GitHub Repository:** [https://github.com/heyimankit/wp-supportdesk](https://github.com/heyimankit/wp-supportdesk)
-- **Temporary Live Demo (Cloudflare Quick Tunnel):** [https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/](https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/) *(Active during live demonstration sessions from the local development server)*
-- **Live Admin Login (Demo):** [https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/wp-login.php](https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/wp-login.php)
+- **Temporary Live Demo (Cloudflare Quick Tunnel):** [https://anchor-speakers-stereo-employee.trycloudflare.com/supportdesk/](https://anchor-speakers-stereo-employee.trycloudflare.com/supportdesk/) *(Active during live demonstration sessions from the local development server)*
+- **Live Admin Login (Demo):** [https://anchor-speakers-stereo-employee.trycloudflare.com/supportdesk/wp-login.php](https://anchor-speakers-stereo-employee.trycloudflare.com/supportdesk/wp-login.php)
 - **Local Development URL:** `http://localhost/supportdesk/`
 - **Local WordPress Admin:** `http://localhost/supportdesk/wp-admin/`
 
