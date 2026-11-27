@@ -1,5 +1,10 @@
 # WP SupportDesk — WordPress Support Ticket Management System & Portal
 
+- **GitHub Repository:** [https://github.com/heyimankit/wp-supportdesk](https://github.com/heyimankit/wp-supportdesk)
+- **Live Demo URL (Public HTTPS):** [https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/](https://strength-gzip-sublime-equation.trycloudflare.com/supportdesk/)
+- **Local Development URL:** [http://localhost/supportdesk/](http://localhost/supportdesk/)
+- **WordPress Admin:** [http://localhost/supportdesk/wp-admin/](http://localhost/supportdesk/wp-admin/)
+
 ![WP SupportDesk Homepage](docs/screenshots/01_homepage.png)
 
 WP SupportDesk is an end-to-end, beginner-friendly custom WordPress solution built for client support ticket intake and administrative ticket triage. The project consists of a **secure custom WordPress plugin** (`wp-supportdesk`) and a matching **lightweight custom theme** (`wp-supportdesk-theme`) styled with a clean corporate navy, blue, and white aesthetic.
