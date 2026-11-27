@@ -1,0 +1,62 @@
+/* WP SupportDesk - WordPress Admin Styles */
+
+.column-ticket_id {
+	width: 95px;
+}
+
+.column-ticket_status {
+	width: 135px;
+}
+
+.column-ticket_category {
+	width: 155px;
+}
+
+.wp-supportdesk-badge {
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: 999px;
+	border: 1px solid transparent;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1.4;
+}
+
+.wp-supportdesk-badge--open {
+	background-color: #dbeafe;
+	border-color: #93c5fd;
+	color: #1e3a8a;
+}
+
+.wp-supportdesk-badge--in_progress {
+	background-color: #fef3c7;
+	border-color: #fcd34d;
+	color: #92400e;
+}
+
+.wp-supportdesk-badge--resolved {
+	background-color: #dcfce7;
+	border-color: #86efac;
+	color: #166534;
+}
+
+.wp-supportdesk-metabox-summary {
+	padding: 10px 12px;
+	background-color: #f8fafc;
+	border-left: 3px solid #1d4ed8;
+	border-radius: 0 4px 4px 0;
+	margin: 4px 0 14px;
+}
+
+.wp-supportdesk-metabox-summary p {
+	margin: 0 0 6px;
+}
+
+.wp-supportdesk-metabox-summary p:last-child {
+	margin-bottom: 0;
+}
+
+.wp-supportdesk-metabox-field label {
+	display: block;
+	margin-bottom: 4px;
+}

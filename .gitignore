@@ -1,0 +1,42 @@
+# Ignore WordPress core, configuration, credentials, logs, and dumps
+wp-config.php
+wp-config-*.php
+*.sql
+*.sql.gz
+*.log
+*.sqlite
+*.env
+*.env.*
+*.bak
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Build artifacts and dependencies
+node_modules/
+vendor/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# WordPress runtime uploads and caches
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/debug.log
+
+# Temporary test scratch & backups
+scratch/
+backups/
+cookies*.txt
+*cookies.txt
